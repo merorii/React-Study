@@ -5,7 +5,9 @@ import VideoList from './VideoList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import Button from '../components/Button';
+
 import LoginPopup from '../components/LoginPopup';
+
 
 const HeaderBlock = styled.header`
     position: fixed;
