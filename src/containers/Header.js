@@ -5,7 +5,7 @@ import VideoList from './VideoList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import Button from '../components/Button';
-import Modal from '../components/Modal';
+import LoginPopup from '../components/LoginPopup';
 
 const HeaderBlock = styled.header`
     position: fixed;
@@ -37,7 +37,7 @@ const Navi = ()=>{
                     <Button color="transparent" text={isLogin ? "로그아웃" : "로그인"} onClick={onPopup}/>
                     <FontAwesomeIcon icon={faBars} />
                 </div>
-                {isVisible && <Modal onClick={offPopup}/>}
+                {isVisible && <LoginPopup onClick={offPopup}/>}
             </NavBlock>
             <VideoList/>
         </HeaderBlock>
