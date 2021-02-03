@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import CategoryList from './CategoryList';
 import VideoList from './VideoList';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+import Button from '../components/Button';
+
+import LoginPopup from '../components/LoginPopup';
+
 
 const HeaderBlock = styled.header`
     position: fixed;
@@ -21,11 +25,21 @@ const NavBlock = styled.nav`
 `;
 
 const Navi = ()=>{
+    const [isLogin, setIsLogin] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+
+    const onPopup = () =>  setIsVisible(!isVisible);
+
+    const offPopup = () => setIsVisible(false);
     return(
         <HeaderBlock>
             <NavBlock>
-                <CategoryList/>
-                <div>메뉴</div>{/* <FontAwesomeIcon icon={faBars} /> */}
+                <CategoryList></CategoryList>
+                <div>
+                    <Button color="transparent" text={isLogin ? "로그아웃" : "로그인"} onClick={onPopup}/>
+                    <FontAwesomeIcon icon={faBars} />
+                </div>
+                {isVisible && <LoginPopup onClick={offPopup}/>}
             </NavBlock>
             {/* <VideoList/> */}
         </HeaderBlock>

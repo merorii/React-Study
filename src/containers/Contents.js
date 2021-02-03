@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSelector} from '리액트리덕스';
+import {useSelector} from 'react-redux';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import ReactPlayer from 'react-player';
