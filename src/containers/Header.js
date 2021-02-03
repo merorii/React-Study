@@ -41,7 +41,7 @@ const Navi = ()=>{
                 </div>
                 {isVisible && <LoginPopup onClick={offPopup}/>}
             </NavBlock>
-            <VideoList/>
+            {/* <VideoList/> */}
         </HeaderBlock>
     );
 }

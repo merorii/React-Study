@@ -1,10 +1,13 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import styled from 'styled-components';
 import Button from '../components/Button';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import ReactPlayer from 'react-player';
 
-library.add(faBars);
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { faBars } from '@fortawesome/free-solid-svg-icons'
+
+// library.add(faBars);
 
 const ContentsBlock = styled.main`
     padding-top: 8rem;
@@ -13,8 +16,8 @@ const ContentsBlock = styled.main`
 `;
 
 const Video = styled.div`
-    width: 80rem;
-    height: 45rem;
+    width: 80vw;
+    height: 70vh;
     background: #222;
     color: #fff;
     display: flex;
@@ -24,17 +27,23 @@ const Video = styled.div`
 `;
 
 const ButtonBlock = styled.section`
-    width: 80rem;
+    width: 80vw;
     margin: 1rem auto;
 `;
 
 const Main = ()=>{
+    const {상태} = useSelector(리듀서이름);
+
+    const videoUrl = "https://www.youtube.com/watch?v="+상태;
+
     return(
         <ContentsBlock>
-            <Video>영상</Video>
+            <Video>
+                <ReactPlayer
+                url={videoUrl} playing controls/>
+            </Video>
             <ButtonBlock>
-                <Button text="담기" icons="faBars"/>
-                <Button text="즐겨찾기" icons="faBars"/>
+                <Button text="즐겨찾기"/>
             </ButtonBlock>
         </ContentsBlock>
     );

@@ -18,30 +18,27 @@ const AddBtn = styled.div`
 
 const CategoryList = ()=>{
 
-    // const texts = [
-    //     {
-    //         id:1,
-    //         name: '카테고리1'
-    //     },
-    //     {
-    //         id:2,
-    //         name: '카테고리2'
-    //     },
-    //     {
-    //         id:3,
-    //         name: '카테고리3'
-    //     }
-    // ];
-    const texts = ['카테고리1', '카테고리2', '카테고리3'];
+    const texts = [
+        {
+            id:1,
+            title:'아이유'
+        },{
+            id:2,
+            title:'디즈니'
+        },{
+            id:3,
+            title:'잔나비'
+        }
+    ];
 
     return(
         <CategoryListBlock>
-            {texts.map(item=>{
-                <Category text={item}/>
-            })}
-            <Category text='카테고리1'/>
-            <Category text='카테고리2'/>
-            <Category text='카테고리3'/>
+            {texts.map(item=>
+                <Category 
+                    keyword={item.title} 
+                    key={item.id} 
+                />
+            )}
             <AddBtn>+</AddBtn>
         </CategoryListBlock>
     )

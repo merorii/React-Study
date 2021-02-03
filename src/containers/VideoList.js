@@ -5,7 +5,7 @@ import Video from '../components/Video';
 const VideoListBlock = styled.section`
     display:flex;
     align-items: center;
-    height:10rem;
+    height:12rem;
     background:#999;
     padding:0 1rem;
 `;
@@ -13,9 +13,7 @@ const VideoListBlock = styled.section`
 const VideoList = ()=>{
     return(
         <VideoListBlock>
-            <Video title='썸네일1'/>
-            <Video title='썸네일2'/>
-            <Video title='썸네일3'/>
+          <Video/>
         </VideoListBlock>
     )
 }
