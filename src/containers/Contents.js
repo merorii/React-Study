@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from '리액트리덕스';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import ReactPlayer from 'react-player';
@@ -30,8 +31,10 @@ const ButtonBlock = styled.section`
     margin: 1rem auto;
 `;
 
-const Main = ({videoId})=>{
-    const videoUrl = "https://www.youtube.com/watch?v="+videoId;
+const Main = ()=>{
+    const {상태} = useSelector(리듀서이름);
+
+    const videoUrl = "https://www.youtube.com/watch?v="+상태;
 
     return(
         <ContentsBlock>

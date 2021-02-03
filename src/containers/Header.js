@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import CategoryList from './CategoryList';
 import VideoList from './VideoList';
@@ -20,32 +20,14 @@ const NavBlock = styled.nav`
     padding: 0 1rem;
 `;
 
-const FullMenu = styled.nav`
-    width:100%;
-    height: 100%;  
-    background:rgba(0,0,0,0.6);
-    position:fixed;
-    top:0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index:10000;
-`;
-
-const Navi = (props)=>{
-    const [category, setCategory] = useState('');
+const Navi = ()=>{
     return(
         <HeaderBlock>
             <NavBlock>
-                {console.log("keyword:: "+category)}
-                <CategoryList setCategory={setCategory}/>
-                <div>메뉴</div>
-                {/* <FontAwesomeIcon icon={faBars} /> */}
+                <CategoryList/>
+                <div>메뉴</div>{/* <FontAwesomeIcon icon={faBars} /> */}
             </NavBlock>
-            {category && <VideoList category={category} setVideoId={props.setVideoId}/>}
-            {/* <FullMenu>
-                <CategoryList setCategory={setCategory}/>
-            </FullMenu> */}
+            {/* <VideoList/> */}
         </HeaderBlock>
     );
 }

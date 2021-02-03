@@ -1,5 +1,6 @@
 import React from 'react';
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
+import useAxios from '../hooks/useAxios';
 
 const CategoryBlock = styled.div`
     background: #eee;
@@ -11,16 +12,21 @@ const CategoryBlock = styled.div`
     cursor:pointer;
 `;
 
-const Category = (category)=>{
-    const onClick=()=>{
-        category.setCategory(category.text)
-    }
+const Category = ({keyword})=>{
 
+    const {state:videos, error, changeKeyword} = useAxios(keyword);
+    const onClick = ()=>{
+        changeKeyword(keyword);
+    }
+    if(error){
+        console.log(error);
+        return;
+    }
     return(
         <CategoryBlock onClick={onClick}>
-            {category.text}
+            {keyword}
         </CategoryBlock>
-    )
+    );
 }
 
 export default Category;

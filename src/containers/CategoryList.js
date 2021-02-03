@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Category from '../components/Category';
 
@@ -16,7 +16,7 @@ const AddBtn = styled.div`
     line-height: 2rem;
 `;
 
-const CategoryList = ({setCategory})=>{
+const CategoryList = ()=>{
 
     const texts = [
         {
@@ -35,9 +35,8 @@ const CategoryList = ({setCategory})=>{
         <CategoryListBlock>
             {texts.map(item=>
                 <Category 
-                    text={item.title} 
-                    key={item.id}
-                    setCategory={setCategory} 
+                    keyword={item.title} 
+                    key={item.id} 
                 />
             )}
             <AddBtn>+</AddBtn>
