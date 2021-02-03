@@ -1,9 +1,11 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { addPlaylistRequest } from '../reducers/video';
+import { useDispatch } from 'react-redux';
 
 axios.defaults.baseURL = 'https://www.googleapis.com/youtube/v3';
-axios.defaults.params = {key: process.env.REACT_APP_API_KEY};
-
+axios.defaults.params = {key: "AIzaSyB86gUYv14tA0bFngwqxzUsWYIQI5eRNg4"};
+// process.env.REACT_APP_API_KEY
 const useAxios = (keyword) => {
   
   const [state, setState] = useState({});
@@ -22,20 +24,22 @@ const useAxios = (keyword) => {
   useEffect(()=>{
       axios.get('/search', {params})
         .then(response => {
+          console.log(response)
           if(!response) {
             setError('검색된 영상이 없습니다.');
             return;
           }
           const itemRandom = Math.floor( Math.random() * 20 );
           console.log(itemRandom);
+          console.log(response.data)
           console.log(response.data.items[itemRandom]);
           setState(response.data.items[itemRandom]);
-          dispatch(액션이름(response.data.items[itemRandom]));
+          dispatch(addPlaylistRequest(response.data.items[itemRandom]));
         })      
         .catch(err => {
           console.log(err);
         })
-  }, [trigger]);
+  }, [trigger]); 
 
   const changeKeyword = (keyword) => {
     setParams({...params, q:`${keyword} 노래모음`})

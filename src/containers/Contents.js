@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {useSelector} from 'react-redux';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import ReactPlayer from 'react-player';
+
 
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -31,10 +32,11 @@ const ButtonBlock = styled.section`
     margin: 1rem auto;
 `;
 
-const Main = ()=>{
-    const {상태} = useSelector(리듀서이름);
-
-    const videoUrl = "https://www.youtube.com/watch?v="+상태;
+const Main = ()=> {
+  
+    const  video  = useSelector(state => state.video);
+    console.log(video)
+    const videoUrl = `https://www.youtube.com/watch?v=${video.playList}`
 
     return(
         <ContentsBlock>

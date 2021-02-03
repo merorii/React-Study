@@ -1,39 +1,25 @@
-const initialState = {
-  
-  playLists: [],
-  
-  // object
-  // {
-  //   id: number
-  //   keyword: string
-  //   videos: [],
-  // }
-}
+import produce from 'immer';
 
 export const ADD_PLAYLIST_REQUEST = 'ADD_PLAYLIST_REQUEST';
-export const DELETE_PLAYLIST_REQUEST = 'DELETE_PLAYLIST_REQUEST';
 
-export const addPlaylistRequest = data => ({
+export const addPlaylistRequest = data => ({  
   type: ADD_PLAYLIST_REQUEST,
   data,
 });
 
-export const deletePlaylistRequest = data => ({
-  type: DELETE_PLAYLIST_REQUEST,
-  data,
-});
-
+const initialState = {
+  
+  playList: null
+  
+}
 
 const reducer = (state = initialState, action) => produce(state, (draft) => {
   switch(action.type){
     case ADD_PLAYLIST_REQUEST:
-      draft.playLists.videos.push(action.data);
-      break;
-    case DELETE_PLAYLIST_REQUEST:
-      draft.playLists.videos = [];
+      draft.playList = action.data.id.videoId;
       break;
     default:
-      break;      
+      break;
     }
   })
 
