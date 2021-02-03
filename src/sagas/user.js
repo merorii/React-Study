@@ -22,7 +22,7 @@ function* login(action) {
     });
   }
 }
-function* watchLogout() {
+function* watchLogin() {
   yield takeLatest(LOGIN_REQUEST, login);
 }
 
