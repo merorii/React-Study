@@ -3,13 +3,15 @@ import styled from 'styled-components';
 import useAxios from '../hooks/useAxios';
 
 const CategoryBlock = styled.div`
-    background: #eee;
+    background: rgba(255, 255, 255, .3); //#eee
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
     margin-right:0.5rem;
     height:3rem;
     line-height: 3rem;
     padding:0 1rem;
     border-radius: 0.5rem;
     cursor:pointer;
+    font-weight: 500;
 `;
 
 const Category = ({keyword})=>{
