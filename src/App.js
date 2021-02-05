@@ -1,13 +1,11 @@
 import React from 'react';
-import Header from './containers/Header';
-import Contents from './containers/Contents';
+import { AppRouter } from './routes';
 
 function App() {
   return (
-    <>
-      <Header/>
-      <Contents/>
-    </>
+    <div id="app">
+      <AppRouter />
+    </div>
   );
 }
 
