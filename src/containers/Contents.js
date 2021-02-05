@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import ReactPlayer from 'react-player';
-import rootReducer from '../reducers/index';
 
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -33,9 +32,8 @@ const ButtonBlock = styled.section`
 `;
 
 const Main = () => {
-  const { play } = useSelector(rootReducer);
-  console.log(play);
-  const videoUrl = 'https://www.youtube.com/watch?v=';
+  const video = useSelector((state) => state.video);
+  const videoUrl = `https://www.youtube.com/watch?v=${video.playList}`;
 
   return (
     <ContentsBlock>

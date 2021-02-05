@@ -1,6 +1,6 @@
 import produce from 'immer';
 import moment from 'moment';
-import { createAction } from 'redux-actions';
+import 'moment/locale/ko';
 
 const initialState = {
   user: [],
