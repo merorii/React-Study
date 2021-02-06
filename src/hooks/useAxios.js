@@ -15,6 +15,7 @@ const useAxios = (keyword) => {
     q: `${keyword}노래모음`,
     maxResults: 20,
     type: 'video',
+    videoDuration: 'long'
   });
 
   const [trigger, setTrigger] = useState(0);
