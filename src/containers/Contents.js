@@ -10,26 +10,24 @@ import ReactPlayer from 'react-player';
 // library.add(faBars);
 
 const ContentsBlock = styled.main`
-  padding-top: 8rem;
   width: 100%;
   height: 100vh;
 `;
 
 const Video = styled.div`
-  width: 80vw;
-  height: 70vh;
-  background: #222;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+  position:relative; 
+  height:0;
+  width:100%;
+  padding-bottom:56.25%; 
+`;
+const VideoWrap = styled.div`
+width: 80vw;
+position: relative;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
 `;
 
-const ButtonBlock = styled.section`
-  width: 80vw;
-  margin: 1rem auto;
-`;
 
 const Main = () => {
   const video = useSelector((state) => state.video);
@@ -37,12 +35,15 @@ const Main = () => {
 
   return (
     <ContentsBlock>
-      <Video>
-        <ReactPlayer url={videoUrl} playing controls />
-      </Video>
-      <ButtonBlock>
-        <Button text="즐겨찾기" />
-      </ButtonBlock>
+      <VideoWrap >
+        <Video>
+          <ReactPlayer url={videoUrl} playing loop controls width={'100%'} height={'100%'} style={{
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }} />
+        </Video>
+      </VideoWrap>
     </ContentsBlock>
   );
 };

@@ -10,7 +10,7 @@ import {
 
 function* login(action) {
   try {
-    yield delay(500);
+    yield delay(3000);
     yield put({
       type: LOGIN_SUCCESS,
       data: action.data,
@@ -22,6 +22,7 @@ function* login(action) {
     });
   }
 }
+
 function* watchLogin() {
   yield takeLatest(LOGIN_REQUEST, login);
 }
