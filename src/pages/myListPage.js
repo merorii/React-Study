@@ -3,7 +3,11 @@ import Header from '../containers/Header';
 import Contents from '../containers/Contents';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import SideMenu from '../containers/SideMenu';
 
+const LayoutWrap = styled.div`
+  display: flex;
+`;
 const LayoutImg = styled.div`
   background-image: url('${(props) => (props.bg ? props.bg : '#fff')}');
   background-repeat: no-repeat;
@@ -28,11 +32,11 @@ const LayoutImg = styled.div`
 const MyListPage = () => {
   const video = useSelector((state) => state.video);
   return (
-    <div>
+    <LayoutWrap>
       <LayoutImg bg={video.backgroundBg} />
-      <Header />
+      <SideMenu />
       <Contents />
-    </div>
+    </LayoutWrap>
   );
 };
 
