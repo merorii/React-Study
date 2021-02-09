@@ -4,6 +4,7 @@ import Category from '../components/Category';
 
 const CategoryListBlock = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
 `;
 
@@ -16,27 +17,27 @@ const AddBtn = styled.div`
     line-height: 2rem;
 `;
 
-const CategoryList = ()=>{
+const CategoryList = () => {
 
     const texts = [
         {
-            id:1,
-            title:'아이유'
-        },{
-            id:2,
-            title:'디즈니'
-        },{
-            id:3,
-            title:'잔나비'
+            id: 1,
+            title: '아이유'
+        }, {
+            id: 2,
+            title: '디즈니'
+        }, {
+            id: 3,
+            title: '잔나비'
         }
     ];
 
-    return(
+    return (
         <CategoryListBlock>
-            {texts.map(item=>
-                <Category 
-                    keyword={item.title} 
-                    key={item.id} 
+            {texts.map(item =>
+                <Category
+                    keyword={item.title}
+                    key={item.id}
                 />
             )}
             <AddBtn>+</AddBtn>

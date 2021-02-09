@@ -55,6 +55,7 @@ const Navi = () => {
         <MenuBlock>
           {/* <Button color="transparent" text={isLogin ? '로그아웃' : '로그인'} /> */}
           <FontAwesomeIcon icon={faBars} onClick={activeSideMenu} />
+          <CategoryList></CategoryList>
         </MenuBlock>
         <ButtonBlock>
           <Button> <FontAwesomeIcon icon={faBookmark} /></Button>

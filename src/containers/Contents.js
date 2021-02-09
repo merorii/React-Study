@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import ReactPlayer from 'react-player';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faList, faStar } from '@fortawesome/free-solid-svg-icons';
+
 
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -20,18 +24,31 @@ const Video = styled.div`
   width:100%;
   padding-bottom:56.25%; 
 `;
+
 const VideoWrap = styled.div`
-width: 80vw;
-position: relative;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
+  width: 80vw;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const VideoBottomStyle = styled.div`
+  display:flex;
+  justify-content: space-between;
 `;
 
 
 const Main = () => {
+  const [addBookMarkList, setAddBookmarkList] = useState(false);
+
   const video = useSelector((state) => state.video);
   const videoUrl = `https://www.youtube.com/watch?v=${video.playList}`;
+
+  const dispatch = useDispatch();
+  const addBookMark = () => {
+    addBookMarkList ? setAddBookmarkList(false) : setAddBookmarkList(true);
+  }
 
   return (
     <ContentsBlock>
@@ -43,6 +60,14 @@ const Main = () => {
             left: 0
           }} />
         </Video>
+        <VideoBottomStyle>
+          <span>
+            {video.title}
+          </span>
+          <span>
+            <FontAwesomeIcon icon={faHeart} style={{ color: addBookMarkList ? 'red' : 'white' }} onClick={addBookMark} />
+          </span>
+        </VideoBottomStyle>
       </VideoWrap>
     </ContentsBlock>
   );
