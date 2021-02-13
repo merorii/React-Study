@@ -42,7 +42,7 @@ const Main = ()=> {
         <ContentsBlock>
             <Video>
                 <ReactPlayer
-                url={videoUrl} playing controls/>
+                url={videoUrl} width='100%' height='100%' playing controls/>
             </Video>
             <ButtonBlock>
                 <Button text="즐겨찾기"/>
