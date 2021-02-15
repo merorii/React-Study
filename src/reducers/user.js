@@ -9,11 +9,13 @@ const initialState = {
   //    name: ""
   //    email: "",
   //  }
-  bookmark: [],
+
+  bookmark:[],
   // {
-  //   videoId: null
-  //   title: ""
-  // }
+  //   title: "",
+  //   videoId: null,
+  //   thumbnail: ""
+  // },
 
   loginLoading: false,
   loginDone: false,
@@ -98,10 +100,14 @@ const reducer = (state = initialState, action) =>
         draft.loginError = action.error;
         break;
       case ADD_LIST_BOOKMARK:
-        draft.bookmark.push({ videoId: action.data.playListId, title: action.data.title })
+        draft.bookmark.push({
+          title: action.data.title,
+          videoId: action.data.playList,
+          thumbnail: action.data.backgroundBg
+        });
         break;
       case DELETE_LIST_BOOKMARK:
-        draft.bookmark = draft.bookmark.filter(bookmark => bookmark.videoId !== action.data.id.videoId)
+        draft.bookmark = draft.bookmark.filter(bookmark => bookmark.videoId !== action.data.id.videoId);
         break;
       default:
         return draft;

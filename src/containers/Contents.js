@@ -8,12 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faList, faStar } from '@fortawesome/free-solid-svg-icons';
 import { addListBookmark } from '../reducers/user';
 
-
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { faBars } from '@fortawesome/free-solid-svg-icons'
-
-// library.add(faBars);
-
 const ContentsBlock = styled.main`
   width: 100%;
   height: 100vh;
@@ -37,6 +31,7 @@ const VideoWrap = styled.div`
 const VideoBottomStyle = styled.div`
   display:flex;
   justify-content: space-between;
+  margin-top: 1vh;
 `;
 
 

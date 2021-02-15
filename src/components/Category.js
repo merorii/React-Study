@@ -13,6 +13,7 @@ const CategoryBlock = styled.div`
     border-radius: 0.5rem;
     cursor:pointer;
     font-weight: 500;
+    color: #fff;
 `;
 
 const Category = ({ keyword }) => {
