@@ -25,10 +25,9 @@ const VideoTitle = styled.p`
 
 const VideoList = ({video})=>{
     
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const onClick = () => {
-        console.log(video);
         dispatch(playBookmarkPlaylist(video));
     }
     return(

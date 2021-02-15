@@ -79,7 +79,7 @@ const SideMenu = () => {
     <SideWrap>
       <SideStyle>
         <span onClick={visibleCategory}><FontAwesomeIcon icon={faList} style={{ color: visibleList ? 'pink' : 'white', marginBottom: '1vh' }} /></span>
-        <span onClick={visibleBookMark}><FontAwesomeIcon icon={faStar} style={{ color: visibleBookmark ? 'pink' : 'white', marginBottom: '1vh' }} /></span>
+        <span onClick={visibleBookMark}><FontAwesomeIcon icon={faStar} style={{ color: visibleBookmark ? 'pink' : 'white' }} /></span>
       </SideStyle>
       {
         !closeSide ?
