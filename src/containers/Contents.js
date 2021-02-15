@@ -6,7 +6,7 @@ import ReactPlayer from 'react-player';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faList, faStar } from '@fortawesome/free-solid-svg-icons';
-import { addListBookmark } from '../reducers/user';
+import { addListBookmark, deleteListBookmark } from '../reducers/user';
 
 const ContentsBlock = styled.main`
   width: 100%;
@@ -40,11 +40,24 @@ const Main = () => {
 
   const video = useSelector((state) => state.video);
   const videoUrl = `https://www.youtube.com/watch?v=${video.playList}`;
+  const bookmarkList = useSelector((state) => state.user.bookmark);
+  
+  useEffect(()=>{
+    bookmarkList.forEach((value)=>{
+      if(video.playList === value.videoId) setAddBookmarkList(true);
+      else setAddBookmarkList(false);
+    });
+  },[video.playList]);
 
   const dispatch = useDispatch();
   const addBookMark = () => {
-    addBookMarkList ? setAddBookmarkList(false) : setAddBookmarkList(true);
-    dispatch(addListBookmark(video)) // 북마크한 video 리덕스에 전달
+    if(addBookMarkList){
+      setAddBookmarkList(false);
+      dispatch(deleteListBookmark(video));
+    }else{
+      setAddBookmarkList(true);
+      dispatch(addListBookmark(video));
+    }
   }
 
   return (

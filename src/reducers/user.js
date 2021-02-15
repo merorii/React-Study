@@ -107,7 +107,7 @@ const reducer = (state = initialState, action) =>
         });
         break;
       case DELETE_LIST_BOOKMARK:
-        draft.bookmark = draft.bookmark.filter(bookmark => bookmark.videoId !== action.data.id.videoId);
+        draft.bookmark = draft.bookmark.filter(bookmark => bookmark.videoId !== action.data.playList);
         break;
       default:
         return draft;
