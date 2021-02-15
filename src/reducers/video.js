@@ -18,8 +18,8 @@ const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
       case ADD_PLAYLIST_REQUEST:
-        console.log(draft)
-        draft.playList = action.data.id.videoId;
+        // console.log(draft)
+        draft.playListId = action.data.id.videoId;
         draft.backgroundBg = action.data.snippet.thumbnails.high.url;
         draft.title = action.data.snippet.title;
         break;

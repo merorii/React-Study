@@ -1,5 +1,7 @@
 import { all, delay, fork, put, takeLatest } from 'redux-saga/effects';
 import {
+  ADD_LIST_BOOKMARK,
+  DELETE_LIST_BOOKMARK,
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -45,6 +47,30 @@ function* watchLogout() {
   yield takeLatest(LOGOUT_REQUEST, logout);
 }
 
+function* addListBookmark(action) {
+  yield delay(500);
+  yield put({
+    type: ADD_LIST_BOOKMARK,
+    data: action.data,
+  });
+}
+
+function* watchAddBookmark() {
+  yield takeLatest(ADD_LIST_BOOKMARK, addListBookmark);
+}
+
+function* deleteListBookmark(action) {
+  yield delay(500);
+  yield put({
+    type: DELETE_LIST_BOOKMARK,
+    data: action.data,
+  });
+}
+
+function* watchDeleteBookmark() {
+  yield takeLatest(ADD_LIST_BOOKMARK, deleteListBookmark);
+}
+
 export default function* userSaga() {
-  yield all([fork(watchLogin), fork(watchLogout)]);
+  yield all([fork(watchLogin), fork(watchLogout), fork(watchAddBookmark), fork(watchDeleteBookmark)]);
 }

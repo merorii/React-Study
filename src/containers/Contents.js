@@ -6,6 +6,7 @@ import ReactPlayer from 'react-player';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faList, faStar } from '@fortawesome/free-solid-svg-icons';
+import { addListBookmark } from '../reducers/user';
 
 
 // import { library } from '@fortawesome/fontawesome-svg-core'
@@ -48,6 +49,7 @@ const Main = () => {
   const dispatch = useDispatch();
   const addBookMark = () => {
     addBookMarkList ? setAddBookmarkList(false) : setAddBookmarkList(true);
+    dispatch(addListBookmark(video)) // 북마크한 video 리덕스에 전달
   }
 
   return (
