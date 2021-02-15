@@ -60,7 +60,7 @@ const getNewId = () => {
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
     // console.log(draft);
-
+    // console.log(state)
     switch (action.type) {
       case LOGIN_REQUEST:
         console.log("login request")
@@ -110,7 +110,7 @@ const reducer = (state = initialState, action) =>
         draft.bookmark = draft.bookmark.filter(bookmark => bookmark.videoId !== action.data.id.videoId);
         break;
       default:
-        return state;
+        return draft;
     }
   });
 

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import ReactPlayer from 'react-player';
-import { addListBookmark } from '../reducers/user';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faList, faStar } from '@fortawesome/free-solid-svg-icons';
+import { addListBookmark } from '../reducers/user';
 
 const ContentsBlock = styled.main`
   width: 100%;
@@ -44,7 +44,7 @@ const Main = () => {
   const dispatch = useDispatch();
   const addBookMark = () => {
     addBookMarkList ? setAddBookmarkList(false) : setAddBookmarkList(true);
-    dispatch(addListBookmark(video));
+    dispatch(addListBookmark(video)) // 북마크한 video 리덕스에 전달
   }
 
   return (
