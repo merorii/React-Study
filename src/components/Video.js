@@ -6,7 +6,7 @@ const VideoBlock = styled.section`
     text-align:center;
     color:#fff;
     & + & {
-      margin-left: 1rem;
+        margin-left: 1rem;
     } 
 `;
 
