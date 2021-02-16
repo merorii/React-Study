@@ -7,7 +7,6 @@ export const addPlaylistRequest = (data) => ({
   data,
 });
 
-
 const initialState = {
   playList: null,
   backgroundBg: '',
@@ -18,7 +17,7 @@ const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
       case ADD_PLAYLIST_REQUEST:
-        console.log(draft)
+        console.log('video draft: ', draft);
         draft.playList = action.data.id.videoId;
         draft.backgroundBg = action.data.snippet.thumbnails.high.url;
         draft.title = action.data.snippet.title;

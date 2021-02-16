@@ -58,17 +58,17 @@ const getNewId = () => {
 
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
-    console.log(draft);
+    console.log('user draft: ', draft);
 
     switch (action.type) {
       case LOGIN_REQUEST:
-        console.log("login request")
+        console.log('login request');
         draft.loginLoading = true;
         draft.loginDone = false;
         draft.loginError = null;
         break;
       case LOGIN_SUCCESS:
-        console.log("login request success")
+        console.log('login request success');
 
         draft.user = { id: getNewId(), name: action.name, email: action.email };
         draft.loginLoading = false;
@@ -76,7 +76,7 @@ const reducer = (state = initialState, action) =>
         draft.loginError = null;
         break;
       case LOGIN_FAILURE:
-        console.log("login request failure")
+        console.log('login request failure');
 
         draft.loginLoading = false;
         draft.loginDone = false;
