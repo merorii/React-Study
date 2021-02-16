@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+//base
+import React, { useState } from 'react';
+
+//hooks
+import { useAxios, WindowSize } from 'hooks';
 
 //lib
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faList, faStar } from '@fortawesome/free-solid-svg-icons';
-
-//hooks
-import useAxios from '../hooks/useAxios';
-import { WindowSize } from '../hooks/useResponsive';
+import { faList, faStar } from '@fortawesome/free-solid-svg-icons';
 
 //conponents
-import CategoryList from './CategoryList';
+import { CategoryList } from 'containers';
 
 const SideWrap = styled.div`
   display: flex;
@@ -78,7 +78,7 @@ const SideMenu = () => {
   const [visibleList, setVisibleList] = useState(false);
   const [visibleBookmark, setVisibleBookMark] = useState(false);
 
-  const { onlyIsPc, onlyIsTablet, onlyIsMobile } = WindowSize();
+  const { onlyIsTablet } = WindowSize();
 
   const visibleCategory = () => {
     if (visibleList) {
@@ -108,7 +108,7 @@ const SideMenu = () => {
     setVisibleList(false);
   };
 
-  const { state: videos, error, changeKeyword } = useAxios('아이유');
+  const { error, changeKeyword } = useAxios('아이유');
   const onClick = (keyword) => {
     changeKeyword(keyword);
   };

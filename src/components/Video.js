@@ -1,4 +1,7 @@
+//base
 import React from 'react';
+
+//libs
 import styled from 'styled-components';
 
 const VideoBlock = styled.section`

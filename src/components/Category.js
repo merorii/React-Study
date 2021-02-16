@@ -1,6 +1,8 @@
+//base
 import React from 'react';
+
+//libs
 import styled from 'styled-components';
-import useAxios from '../hooks/useAxios';
 
 const CategoryBlock = styled.div`
   background: rgba(255, 255, 255, 0.3); //#eee
@@ -21,8 +23,6 @@ const CategoryBlock = styled.div`
 `;
 
 const Category = ({ keyword, onClick }) => {
-  //   const { state: videos, error, changeKeyword } = useAxios(keyword);
-
   return <CategoryBlock onClick={() => onClick(keyword)}>{keyword}</CategoryBlock>;
 };
 

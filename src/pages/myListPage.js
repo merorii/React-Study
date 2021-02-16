@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
-
-import Header from '../containers/Header';
-import Contents from '../containers/Contents';
-import styled from 'styled-components';
+//base
+import React from 'react';
 import { useSelector } from 'react-redux';
-import SideMenu from '../containers/SideMenu';
-import { WindowSize } from '../hooks/useResponsive';
+
+//hooks
+import { WindowSize } from 'hooks';
+
+//libs
+import styled from 'styled-components';
+
+//components
+import { Contents, SideMenu } from 'containers';
 
 const LayoutWrap = styled.div`
   display: flex;
@@ -42,16 +46,9 @@ const LayoutImg = styled.div`
   }
 `;
 
-// const Mobile = ({ children }) => {
-//   const isMobile = useMediaQuery({
-//     query: '(max-width : 767px)',
-//   });
-//   return <React.Fragment>{isMobile && children}</React.Fragment>;
-// };
-
 const MyListPage = () => {
   const video = useSelector((state) => state.video);
-  const { onlyIsPc, onlyIsTablet, onlyIsMobile } = WindowSize();
+  const { onlyIsTablet } = WindowSize();
 
   return (
     <LayoutWrap onlyIsTablet={onlyIsTablet}>

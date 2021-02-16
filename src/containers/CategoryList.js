@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+//base
+import React from 'react';
 
 //hooks
 import { WindowSize } from '../hooks/useResponsive';
-import useAxios from '../hooks/useAxios';
 
-import Category from '../components/Category';
+//libs
+import styled from 'styled-components';
+
+//components
+import { Category } from 'components';
 
 const CategoryListBlock = styled.div`
   display: flex;
@@ -58,20 +61,7 @@ const CategoryList = ({ onClick }) => {
     },
   ];
 
-  const { onlyIsPc, onlyIsTablet, onlyIsMobile } = WindowSize();
-
-  //   useEffect(() => {
-  //     changeKeyword(texts[0].title);
-  //     console.log(texts[0].title);
-  //   }, []);
-
-  //   const onClick = (keyword) => {
-  //     changeKeyword(keyword);
-  //   };
-  //   if (error) {
-  //     console.log(error);
-  //     return;
-  //   }
+  const { onlyIsTablet } = WindowSize();
 
   return (
     <>

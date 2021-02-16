@@ -1,19 +1,15 @@
-import React, { useEffect, useState } from 'react';
+//base
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import { WindowSize } from '../hooks/useResponsive';
+//hooks
+import { WindowSize } from 'hooks';
 
-import { useDispatch, useSelector } from 'react-redux';
+//libs
 import styled from 'styled-components';
-import Button from '../components/Button';
 import ReactPlayer from 'react-player';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faList, faStar } from '@fortawesome/free-solid-svg-icons';
-
-// import { library } from '@fortawesome/fontawesome-svg-core'
-// import { faBars } from '@fortawesome/free-solid-svg-icons'
-
-// library.add(faBars);
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const ContentsBlock = styled.main`
   width: 100%;
@@ -47,14 +43,13 @@ const VideoBottomStyle = styled.div`
 `;
 
 const Main = () => {
-  const { onlyIsPc, onlyIsTablet, onlyIsMobile } = WindowSize();
+  const { onlyIsTablet } = WindowSize();
 
   const [addBookMarkList, setAddBookmarkList] = useState(false);
 
   const video = useSelector((state) => state.video);
   const videoUrl = `https://www.youtube.com/watch?v=${video.playList}`;
 
-  const dispatch = useDispatch();
   const addBookMark = () => {
     addBookMarkList ? setAddBookmarkList(false) : setAddBookmarkList(true);
   };

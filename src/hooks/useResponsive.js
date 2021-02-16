@@ -15,13 +15,11 @@ export const Tablet = ({ children }) => {
   return <React.Fragment>{isTablet && children}</React.Fragment>;
 };
 
-export const Mobile = (mobile) => {
-  var mobileLen = Object.keys(mobile).length;
+export const Mobile = ({ children }) => {
   const isMobile = useMediaQuery({
     query: '(max-width : 767px)',
   });
-  // return <React.Fragment>{isMobile && <div>{mobile}</div>}</React.Fragment>;
-  return isMobile && mobileLen !== 0 ? mobile.mobile : `<div></div>`;
+  return <React.Fragment>{isMobile && children}</React.Fragment>;
 };
 
 export const WindowSize = () => {
