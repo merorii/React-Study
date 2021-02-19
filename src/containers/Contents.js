@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import ReactPlayer from 'react-player';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faList, faStar } from '@fortawesome/free-solid-svg-icons';
 
 
 // import { library } from '@fortawesome/fontawesome-svg-core'
@@ -11,44 +14,63 @@ import ReactPlayer from 'react-player';
 // library.add(faBars);
 
 const ContentsBlock = styled.main`
-    padding-top: 8rem;
-    width:100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
 `;
 
 const Video = styled.div`
-    width: 80vw;
-    height: 70vh;
-    background: #222;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+  position:relative; 
+  height:0;
+  width:100%;
+  padding-bottom:56.25%; 
 `;
 
-const ButtonBlock = styled.section`
-    width: 80vw;
-    margin: 1rem auto;
+const VideoWrap = styled.div`
+  width: 80vw;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
-const Main = ()=> {
-  
-    const  video  = useSelector(state => state.video);
-    console.log(video)
-    const videoUrl = `https://www.youtube.com/watch?v=${video.playList}`
+const VideoBottomStyle = styled.div`
+  display:flex;
+  justify-content: space-between;
+`;
 
-    return(
-        <ContentsBlock>
-            <Video>
-                <ReactPlayer
-                url={videoUrl} playing controls/>
-            </Video>
-            <ButtonBlock>
-                <Button text="즐겨찾기"/>
-            </ButtonBlock>
-        </ContentsBlock>
-    );
-}
+
+const Main = () => {
+  const [addBookMarkList, setAddBookmarkList] = useState(false);
+
+  const video = useSelector((state) => state.video);
+  const videoUrl = `https://www.youtube.com/watch?v=${video.playList}`;
+
+  const dispatch = useDispatch();
+  const addBookMark = () => {
+    addBookMarkList ? setAddBookmarkList(false) : setAddBookmarkList(true);
+  }
+
+  return (
+    <ContentsBlock>
+      <VideoWrap >
+        <Video>
+          <ReactPlayer url={videoUrl} playing loop controls width={'100%'} height={'100%'} style={{
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }} />
+        </Video>
+        <VideoBottomStyle>
+          <span>
+            {video.title}
+          </span>
+          <span>
+            <FontAwesomeIcon icon={faHeart} style={{ color: addBookMarkList ? 'red' : 'white' }} onClick={addBookMark} />
+          </span>
+        </VideoBottomStyle>
+      </VideoWrap>
+    </ContentsBlock>
+  );
+};
 
 export default Main;

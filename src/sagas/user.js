@@ -1,4 +1,4 @@
-import { all, delay, fork, put, takeLatest } from "redux-saga/effects";
+import { all, delay, fork, put, takeLatest } from 'redux-saga/effects';
 import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
@@ -6,11 +6,11 @@ import {
   LOGOUT_FAILURE,
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
-} from "../reducers/user";
+} from '../reducers/user';
 
 function* login(action) {
   try {
-    yield delay(500);
+    yield delay(3000);
     yield put({
       type: LOGIN_SUCCESS,
       data: action.data,
@@ -18,10 +18,11 @@ function* login(action) {
   } catch (err) {
     yield put({
       type: LOGIN_FAILURE,
-      error: "비밀번호를 다시 입력해주세요",
+      error: '비밀번호를 다시 입력해주세요',
     });
   }
 }
+
 function* watchLogin() {
   yield takeLatest(LOGIN_REQUEST, login);
 }
@@ -36,7 +37,7 @@ function* logout(action) {
   } catch (err) {
     yield put({
       type: LOGOUT_FAILURE,
-      error: "페이지에 오류가 있습니다.",
+      error: '페이지에 오류가 있습니다.',
     });
   }
 }
