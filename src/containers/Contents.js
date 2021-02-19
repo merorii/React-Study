@@ -1,6 +1,6 @@
 //base
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 //hooks
 import { WindowSize } from 'hooks';
@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import ReactPlayer from 'react-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { addListBookmark, deleteListBookmark } from '../reducers/user';
 
 const ContentsBlock = styled.main`
   width: 100%;
@@ -46,12 +47,26 @@ const Main = () => {
   const { onlyIsTablet } = WindowSize();
 
   const [addBookMarkList, setAddBookmarkList] = useState(false);
-
+  const dispatch = useDispatch();
   const video = useSelector((state) => state.video);
   const videoUrl = `https://www.youtube.com/watch?v=${video.playList}`;
+  const bookmarkList = useSelector((state) => state.user.bookmark);
+
+  useEffect(() => {
+    bookmarkList.forEach((value) => {
+      if (video.playList === value.videoId) setAddBookmarkList(true);
+      else setAddBookmarkList(false);
+    });
+  }, [video.playList]);
 
   const addBookMark = () => {
-    addBookMarkList ? setAddBookmarkList(false) : setAddBookmarkList(true);
+    if (addBookMarkList) {
+      setAddBookmarkList(false);
+      dispatch(deleteListBookmark(video));
+    } else {
+      setAddBookmarkList(true);
+      dispatch(addListBookmark(video));
+    }
   };
 
   return (

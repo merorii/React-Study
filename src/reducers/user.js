@@ -9,12 +9,13 @@ const initialState = {
   //    name: ""
   //    email: "",
   //  }
+
   bookmark: [],
   // {
-  //   id: null
-  //   title: ""
-  //   videoId: null
-  // }
+  //   title: "",
+  //   videoId: null,
+  //   thumbnail: ""
+  // },
 
   loginLoading: false,
   loginDone: false,
@@ -58,8 +59,8 @@ const getNewId = () => {
 
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
-    console.log('user draft: ', draft);
-
+    // console.log(draft);
+    // console.log(state)
     switch (action.type) {
       case LOGIN_REQUEST:
         console.log('login request');
@@ -99,11 +100,17 @@ const reducer = (state = initialState, action) =>
         draft.loginError = action.error;
         break;
       case ADD_LIST_BOOKMARK:
+        draft.bookmark.push({
+          title: action.data.title,
+          videoId: action.data.playList,
+          thumbnail: action.data.backgroundBg,
+        });
         break;
       case DELETE_LIST_BOOKMARK:
+        draft.bookmark = draft.bookmark.filter((bookmark) => bookmark.videoId !== action.data.playList);
         break;
       default:
-        return state;
+        return draft;
     }
   });
 

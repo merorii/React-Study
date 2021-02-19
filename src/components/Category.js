@@ -17,8 +17,14 @@ const CategoryBlock = styled.div`
   font-weight: 500;
   flex: none;
   width: fit-content;
-  &:last-child {
-    margin-right: 20px;
+  position: relative;
+
+  &:last-child:after {
+    content: '';
+    position: absolute;
+    right: -2rem;
+    width: 2rem;
+    height: 1px;
   }
 `;
 

@@ -2,10 +2,10 @@ import { all, delay, fork, put, takeLatest } from 'redux-saga/effects';
 import { ADD_PLAYLIST_REQUEST } from '../reducers/video';
 
 function* addPlayList(action) {
-  yield delay(500);
+  yield delay(1000);
   yield put({
-    type: ADD_PLAYLIST_REQUEST,
-    data: action.data,
+    // type: ADD_PLAYLIST_REQUEST,
+    // data: action.data,
   });
 }
 

@@ -14,6 +14,7 @@ import { CategoryList } from 'containers';
 
 const SideWrap = styled.div`
   display: flex;
+  height: 100vh;
   margin-right: 0.5rem;
 `;
 const SideStyle = styled.div`
@@ -79,6 +80,7 @@ const SideMenu = () => {
   const [visibleBookmark, setVisibleBookMark] = useState(false);
 
   const { onlyIsTablet } = WindowSize();
+  // const video = useSelector((state) => state.user);
 
   const visibleCategory = () => {
     if (visibleList) {
