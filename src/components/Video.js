@@ -5,7 +5,9 @@ import { playBookmarkPlaylist } from '../reducers/video';
 
 const VideoBlock = styled.section`
     color:#fff;
-    margin: 0 1vw 2vh;
+    & + & {
+        margin-left: 1rem;
+    } 
 `;
 
 const VideoThumb = styled.img`

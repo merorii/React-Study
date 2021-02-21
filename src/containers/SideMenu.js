@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faList, faStar } from '@fortawesome/free-solid-svg-icons';
 
-
 //conponents
 import CategoryList from './CategoryList';
 import VideoList from '../components/Video';
@@ -18,13 +17,17 @@ const SideWrap = styled.div`
   text-align: center;
 `
 const SideStyle = styled.div`
+  padding: 20px 0;
+  box-sizing: border-box;
   width: 30px;
-  background: #000;
-  padding-top: 1vh;
+  height: 100%;
+  background: rgba(0,0,0, .3);
+  text-align: center;
   color: #fff;
   border-right: 1px solid rgba(255,255,255,.4);
 `
 const SideActiveStyle = styled.div`
+  position: relative;
   width: 200px;
   overflow-y: scroll;
   background: rgba(0,0,0,0.6);
@@ -32,11 +35,34 @@ const SideActiveStyle = styled.div`
     display: none;
   }
 `
+
 const SideActiveCloseStyle = styled.div`
-color: #fff;
-text-align: right;
-padding: 0 10px 1vh 0;
-font-size: 30px;
+  position: absolute;
+  left: calc(100% - 40px);
+  top: 10px;
+  width: 40px;
+  height: 40px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 1.5px;
+    height: 20px;
+    background: #fff;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    left: 50%;
+    top: 50%;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    width: 1.5px;
+    height: 20px;
+    background: #fff;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
 `
 
 
@@ -49,8 +75,8 @@ const SideMenu = () => {
 
   const visibleCategory = () => {
     if (visibleList) {
-      setVisibleList(false);
       setCloseSide(true);
+      setVisibleList(false);
     } else {
       setVisibleList(true);
       setCloseSide(false);
@@ -60,8 +86,8 @@ const SideMenu = () => {
 
   const visibleBookMark = () => {
     if (visibleBookmark) {
-      setVisibleBookMark(false);
       setCloseSide(true);
+      setVisibleBookMark(false)
     } else {
       setVisibleBookMark(true);
       setCloseSide(false);
@@ -78,15 +104,13 @@ const SideMenu = () => {
   return (
     <SideWrap>
       <SideStyle>
-        <span onClick={visibleCategory}><FontAwesomeIcon icon={faList} style={{ color: visibleList ? 'pink' : 'white', marginBottom: '1vh' }} /></span>
-        <span onClick={visibleBookMark}><FontAwesomeIcon icon={faStar} style={{ color: visibleBookmark ? 'pink' : 'white' }} /></span>
+        <span onClick={visibleCategory}><FontAwesomeIcon icon={faList} style={{ color: visibleList ? 'skyblue' : 'white' }} /></span>
+        <span onClick={visibleBookMark}><FontAwesomeIcon icon={faStar} style={{ marginTop: 20, color: visibleBookmark ? 'gold' : 'white' }} /></span>
       </SideStyle>
       {
         !closeSide ?
           (<SideActiveStyle>
-            <SideActiveCloseStyle onClick={closeSideMenu}>
-              x
-            </SideActiveCloseStyle>
+            <SideActiveCloseStyle onClick={closeSideMenu} />
             {visibleList && <CategoryList></CategoryList>}
             {visibleBookmark && video.bookmark.map((video)=><VideoList video={video}></VideoList>)}
           </SideActiveStyle>)
