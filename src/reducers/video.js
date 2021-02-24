@@ -32,6 +32,7 @@ const reducer = (state = initialState, action) =>
         draft.playList = action.data.videoId;
         draft.backgroundBg = action.data.thumbnail;
         draft.title = action.data.title;
+        draft.bookMarkState = action.data.bookmark;
         break;
       default:
         break;

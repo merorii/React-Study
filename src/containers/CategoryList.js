@@ -9,14 +9,26 @@ const CategoryListBlock = styled.div`
 `;
 
 const AddBtn = styled.div`
-    text-align: center;
+    background: rgba(255, 255, 255, .1); 
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+    width: 2rem;
+    height: 2rem;
     line-height: 2rem;
-    font-size: 0.89rem;
-    border: 1px solid #fff;
-    padding: 0 20px;
-    box-sizing: border-box;
-    margin-top: 30px;
+    border-radius: 1rem;
+    cursor:pointer;
+    color: #fff;
 `;
+
+
+// const AddBtn = styled.div`
+//     text-align: center;
+//     line-height: 2rem;
+//     font-size: 0.89rem;
+//     border: 1px solid #fff;
+//     padding: 0 20px;
+//     box-sizing: border-box;
+//     margin-top: 30px;
+// `;
 
 // const AddBtn = styled.div`
 //     background: #eee;
@@ -50,7 +62,7 @@ const CategoryList = () => {
                     key={item.id}
                 />
             )}
-            <AddBtn>키워드 추가하기</AddBtn>
+            <AddBtn>+</AddBtn>
         </CategoryListBlock>
     )
 }

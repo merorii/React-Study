@@ -37,21 +37,21 @@ const VideoBottomStyle = styled.div`
 
 const Main = () => {
   const [addBookMarkList, setAddBookmarkList] = useState(false);
-
+  
   const video = useSelector((state) => state.video);
   const videoUrl = `https://www.youtube.com/watch?v=${video.playList}`;
   const bookmarkList = useSelector((state) => state.user.bookmark);
-  
-  useEffect(()=>{
-    bookmarkList.forEach((value)=>{
-      if(video.playList === value.videoId) setAddBookmarkList(true);
-      else setAddBookmarkList(false);
-    });
-  },[video.playList]);
 
+  // useEffect(()=>{
+  //   bookmarkList.forEach((value)=>{
+  //     if(video.playList === value.videoId) {setAddBookmarkList(true); return;}
+  //     else setAddBookmarkList(false);
+  //   });
+  // },[video, bookmarkList]);
+  
   const dispatch = useDispatch();
   const addBookMark = () => {
-    if(addBookMarkList){
+    if(video.bookMarkState){
       setAddBookmarkList(false);
       dispatch(deleteListBookmark(video));
     }else{
@@ -74,7 +74,7 @@ const Main = () => {
           <span>
             {video.title}
           </span>
-          <span>
+          <span>{console.log(video.bookMarkState)}
             <FontAwesomeIcon icon={faHeart} style={{ color: addBookMarkList ? 'red' : 'white' }} onClick={addBookMark} />
           </span>
         </VideoBottomStyle>

@@ -103,7 +103,8 @@ const reducer = (state = initialState, action) =>
         draft.bookmark.push({
           title: action.data.title,
           videoId: action.data.playList,
-          thumbnail: action.data.backgroundBg
+          thumbnail: action.data.backgroundBg,
+          bookmark: true
         });
         break;
       case DELETE_LIST_BOOKMARK:
