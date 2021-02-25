@@ -1,12 +1,20 @@
+//base
 import React from 'react';
-import Header from '../containers/Header';
-import Contents from '../containers/Contents';
-import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import SideMenu from '../containers/SideMenu';
+
+//hooks
+import { WindowSize } from 'hooks';
+
+//libs
+import styled from 'styled-components';
+
+//components
+import { Contents, SideMenu } from 'containers';
 
 const LayoutWrap = styled.div`
   display: flex;
+  flex-direction: ${(props) => (props.onlyIsTablet ? 'column-reverse' : 'row')};
+  overflow: hidden;
 `;
 const LayoutImg = styled.div`
   background-image: url('${(props) => (props.bg ? props.bg : '#fff')}');
@@ -20,19 +28,30 @@ const LayoutImg = styled.div`
   right: 0;
   bottom: 0;
   z-index: -1;
+  filter: blur(13px);
+
   &:before {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(12px);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
   }
 `;
 
 const MyListPage = () => {
   const video = useSelector((state) => state.video);
+  const { onlyIsTablet } = WindowSize();
+
   return (
-    <LayoutWrap>
+    <LayoutWrap onlyIsTablet={onlyIsTablet}>
       <LayoutImg bg={video.backgroundBg} />
       <SideMenu />
       <Contents />

@@ -10,7 +10,7 @@ const initialState = {
   //    email: "",
   //  }
 
-  bookmark:[],
+  bookmark: [],
   // {
   //   title: "",
   //   videoId: null,
@@ -29,8 +29,10 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
-export const ADD_LIST_BOOKMARK = 'ADD_LIST_BOOKMARK';
-export const DELETE_LIST_BOOKMARK = 'DELETE_LIST_BOOKMARK';
+export const ADD_LIST_BOOKMARK_REQUEST = 'ADD_LIST_BOOKMARK_REQUEST';
+export const ADD_LIST_BOOKMARK_SUCCESS = 'ADD_LIST_BOOKMARK_SUCCESS';
+export const DELETE_LIST_BOOKMARK_REQUEST = 'DELETE_LIST_BOOKMARK_REQUEST';
+export const DELETE_LIST_BOOKMARK_SUCCESS = 'DELETE_LIST_BOOKMARK_SUCCESS';
 
 export const loginRequestAction = (data) => ({
   type: LOGIN_REQUEST,
@@ -42,13 +44,23 @@ export const logoutRequestAction = (data) => ({
   data,
 });
 
-export const addListBookmark = (data) => ({
-  type: ADD_LIST_BOOKMARK,
+export const addListBookmarkRequest = (data) => ({
+  type: ADD_LIST_BOOKMARK_REQUEST,
   data,
 });
 
-export const deleteListBookmark = (data) => ({
-  type: DELETE_LIST_BOOKMARK,
+export const addListBookmarkSuccess = (data) => ({
+  type: ADD_LIST_BOOKMARK_SUCCESS,
+  data,
+});
+
+export const deleteListBookmarkRequest = (data) => ({
+  type: DELETE_LIST_BOOKMARK_REQUEST,
+  data,
+});
+
+export const deleteListBookmarkSuccess = (data) => ({
+  type: DELETE_LIST_BOOKMARK_SUCCESS,
   data,
 });
 
@@ -63,13 +75,13 @@ const reducer = (state = initialState, action) =>
     // console.log(state)
     switch (action.type) {
       case LOGIN_REQUEST:
-        console.log("login request")
+        console.log('login request');
         draft.loginLoading = true;
         draft.loginDone = false;
         draft.loginError = null;
         break;
       case LOGIN_SUCCESS:
-        console.log("login request success")
+        console.log('login request success');
 
         draft.user = { id: getNewId(), name: action.name, email: action.email };
         draft.loginLoading = false;
@@ -77,7 +89,7 @@ const reducer = (state = initialState, action) =>
         draft.loginError = null;
         break;
       case LOGIN_FAILURE:
-        console.log("login request failure")
+        console.log('login request failure');
 
         draft.loginLoading = false;
         draft.loginDone = false;
@@ -99,15 +111,26 @@ const reducer = (state = initialState, action) =>
         draft.loginDone = false;
         draft.loginError = action.error;
         break;
-      case ADD_LIST_BOOKMARK:
+      case ADD_LIST_BOOKMARK_REQUEST:
         draft.bookmark.push({
           title: action.data.title,
           videoId: action.data.playList,
           thumbnail: action.data.backgroundBg,
-          bookmark: true
+          keyword: action.data.keyword
         });
         break;
-      case DELETE_LIST_BOOKMARK:
+      case ADD_LIST_BOOKMARK_SUCCESS:
+        draft.bookmark.push({
+          title: action.data.title,
+          videoId: action.data.playList,
+          thumbnail: action.data.backgroundBg,
+          keyword: action.data.keyword
+        });
+        break;
+      case DELETE_LIST_BOOKMARK_REQUEST:
+        draft.bookmark = draft.bookmark.filter(bookmark => bookmark.videoId !== action.data.playList);
+        break;
+      case DELETE_LIST_BOOKMARK_SUCCESS:
         draft.bookmark = draft.bookmark.filter(bookmark => bookmark.videoId !== action.data.playList);
         break;
       default:

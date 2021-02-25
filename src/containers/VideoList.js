@@ -1,21 +1,26 @@
+//base
 import React from 'react';
+
+//libs
 import styled from 'styled-components';
-import Video from '../components/Video';
+
+//components
+import { Video } from 'components';
 
 const VideoListBlock = styled.section`
-    display:flex;
-    align-items: center;
-    height:12rem;
-    background:#999;
-    padding:0 1rem;
+  display: flex;
+  align-items: center;
+  height: 12rem;
+  background: #999;
+  padding: 0 1rem;
 `;
 
-const VideoList = ()=>{
-    return(
-        <VideoListBlock>
-          <Video/>
-        </VideoListBlock>
-    )
-}
+const VideoList = () => {
+  return (
+    <VideoListBlock>
+      <Video />
+    </VideoListBlock>
+  );
+};
 
 export default VideoList;
