@@ -10,6 +10,39 @@ const initialState = {
   //    email: "",
   //  }
 
+  category: [
+    {
+      id: 1,
+      title: '아이유',
+      color: '#c86b85'
+    },
+    {
+      id: 2,
+      title: '아이유 크리스마스',
+      color: '#719192'
+    },
+    {
+      id: 3,
+      title: '디즈니',
+      color: '#2d4059'
+    },
+    {
+      id: 4,
+      title: '잔나비',
+      color: '#3c4245'
+    },
+    {
+      id: 5,
+      title: '십센치',
+      color: '#c86b85'
+    },
+    {
+      id: 6,
+      title: '아이즈원',
+      color: '#719192'
+    },
+  ],
+
   bookmark: [],
   // {
   //   title: "",
@@ -29,6 +62,8 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
+export const ADD_CATEGORY_REQUEST = 'ADD_CATEGORY_REQUEST';
+export const ADD_CATEGORY_SUCCESS = 'ADD_CATEGORY_SUCCESS';
 export const ADD_LIST_BOOKMARK_REQUEST = 'ADD_LIST_BOOKMARK_REQUEST';
 export const ADD_LIST_BOOKMARK_SUCCESS = 'ADD_LIST_BOOKMARK_SUCCESS';
 export const DELETE_LIST_BOOKMARK_REQUEST = 'DELETE_LIST_BOOKMARK_REQUEST';
@@ -41,6 +76,16 @@ export const loginRequestAction = (data) => ({
 
 export const logoutRequestAction = (data) => ({
   type: LOGOUT_REQUEST,
+  data,
+});
+
+export const addListCategoryRequest = (data) => ({
+  type: ADD_CATEGORY_REQUEST,
+  data,
+});
+
+export const addListCategorySuccess = (data) => ({
+  type: ADD_CATEGORY_SUCCESS,
   data,
 });
 
@@ -110,6 +155,22 @@ const reducer = (state = initialState, action) =>
         draft.loginLoading = false;
         draft.loginDone = false;
         draft.loginError = action.error;
+        break;
+      case ADD_CATEGORY_REQUEST:
+        draft.category.push({
+          id: state.category.length+1,
+          title: action.data.text,
+          color: action.data.color
+        });
+        console.log(state.category)
+        break;
+      case ADD_CATEGORY_SUCCESS:
+        draft.category.push({
+          id: state.category.length+1,
+          title: action.data.text,
+          color: action.data.color
+        });
+        console.log(state.category)
         break;
       case ADD_LIST_BOOKMARK_REQUEST:
         draft.bookmark.push({
