@@ -39,7 +39,6 @@ const SideStyle = styled.div`
   .keyword {
     color: white;
     display:inline-block;
-    background: black;
     font-size: 15px;
     cursor: pointer;
     width: 25px;
@@ -50,6 +49,7 @@ const SideStyle = styled.div`
     margin: ${(props) => (props.onlyIsTablet ? '0 0 0 20px' : '20px 0 0')};
   }
 `;
+
 const SideActiveStyle = styled.div`
   position: ${(props) => (props.onlyIsTablet ? 'absolute' : 'relative')};
   width: ${(props) => (props.onlyIsTablet ? '100vw' : '200px')};
@@ -104,6 +104,7 @@ const SideMenu = () => {
     state: false,
     keyword: '',
   });
+  const texts = useSelector((state) => state.user.category);
 
   const { onlyIsTablet } = WindowSize();
   const video = useSelector((state) => state.user);
@@ -120,7 +121,7 @@ const SideMenu = () => {
   };
 
   const visibleBookMarkList = (keyword) => {
-    if (visibleBookmark.state) {
+    if (visibleBookmark.state && visibleBookmark.keyword===keyword) {
       setCloseSide(true);
       setVisibleBookMark({...visibleBookmark, state: false});
     } else {
@@ -159,28 +160,31 @@ const SideMenu = () => {
             }}
           />
         </span>
-
-        <span className='keyword' onClick={()=>{visibleBookMarkList('아이유')}}>아</span>
-        <span className='keyword' onClick={()=>{visibleBookMarkList('아이유 크리스마스')}}>아</span>
-        <span className='keyword' onClick={()=>{visibleBookMarkList('디즈니')}}>디</span>
-        <span className='keyword' onClick={()=>{visibleBookMarkList('잔나비')}}>잔</span>
-        <span className='keyword' onClick={()=>{visibleBookMarkList('10cm')}}>십</span>
-        <span className='keyword' onClick={()=>{visibleBookMarkList('아이즈원')}}>아</span>
+        {texts.map((item, idx)=>
+          <span 
+          className='keyword' 
+          style={{
+            background: item.color,
+            opacity: visibleBookmark.state ? '0.5' : '1'
+          }}
+          onClick={()=>{visibleBookMarkList(item.title)}}
+          key={idx}>
+            {item.title.substr(0,1)}
+          </span>
+        )}
       </SideStyle>
       {!closeSide ? (
         <SideActiveStyle onlyIsTablet={onlyIsTablet} visibleBookmark={visibleBookmark.state}>
           <SideActiveCloseStyle onlyIsTablet={onlyIsTablet} onClick={closeSideMenu} />
           {visibleList && <CategoryList onClick={onClick}></CategoryList>}
-          {(visibleBookmark.state && visibleBookmark.keyword==='ALL')  
-            && video.bookmark.map((video, idx) => <VideoList video={video} key={idx}></VideoList>)
-          }
-          {(visibleBookmark.state && visibleBookmark.keyword!=='ALL')
-            && video.bookmark.map((video, idx) => {
-              if(video.keyword === visibleBookmark.keyword) {
-                return <VideoList video={video} key={idx}></VideoList>} 
-              else return <></>}
-            )
-          }
+          {visibleBookmark.state && 
+          video.bookmark.map((video, idx) => {
+            if(visibleBookmark.keyword==='ALL') return <VideoList video={video} key={idx}></VideoList>
+            else{
+              if(video.keyword === visibleBookmark.keyword) return <VideoList video={video} key={idx}></VideoList>
+              else return <></>;
+            }
+          })}
         </SideActiveStyle>
       ) : (
         <></>
