@@ -116,7 +116,10 @@ const CategoryList = ({ onClick }) => {
       </CategoryListBlock>
       <AddCategoryBlock onlyIsTablet={onlyIsTablet}>
         {colors.map((color, idx)=>
-          <Palette style={{background:color}} onClick={()=>{selectColor(color)}} key={idx}></Palette>
+          <Palette style={{
+            background:color,
+            border: (newCategory.color === color) && '2px solid #fff'
+          }} onClick={()=>{selectColor(color)}} key={idx}></Palette>
         )}
         <input onChange={onChange} onKeyPress={onKeyPress} value={newCategory.text} style={{
           lineHeight: '1.5rem',
