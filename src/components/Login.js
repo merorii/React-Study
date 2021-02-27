@@ -7,8 +7,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 //store
-import { loginRequestAction } from '../reducers/user'
-
+import { loginRequestAction } from '../reducers/user';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -47,13 +46,14 @@ const Wrapper = styled.div`
     outline: 0;
     font-size: 1rem;
 
-    background-color: transparent; 
-
+    background-color: transparent;
 
     &:nth-child(2) {
       margin-bottom: 40px;
     }
-    &:-internal-autofill-selected, &:focus, &:active {
+    &:-internal-autofill-selected,
+    &:focus,
+    &:active {
       background: transparent !important;
     }
 
@@ -62,10 +62,9 @@ const Wrapper = styled.div`
     &:-webkit-autofill:focus,
     &:-webkit-autofill:active {
       transition: background-color 5000s ease-in-out 0s;
-        -webkit-transition: background-color 9999s ease-out;
-        -webkit-text-fill-color: rgba(0,0,0,.7) !important;
+      -webkit-transition: background-color 9999s ease-out;
+      -webkit-text-fill-color: rgba(0, 0, 0, 0.7) !important;
     }
- 
   }
 
   form button {

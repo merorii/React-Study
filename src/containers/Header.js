@@ -1,13 +1,14 @@
+//base
 import React, { useState } from 'react';
+
+//libs
 import styled from 'styled-components';
-import CategoryList from './CategoryList';
-import SideMenu from './SideMenu';
-import VideoList from './VideoList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faBookmark } from '@fortawesome/free-solid-svg-icons';
-import Button from '../components/Button';
 
-import Login from '../components/Login';
+//components
+import { Button } from 'components';
+import { CategoryList, SideMenu } from 'containers';
 
 const HeaderBlock = styled.header`
   position: fixed;
@@ -24,22 +25,17 @@ const NavBlock = styled.nav`
   align-items: center;
 `;
 
-
-// const ButtonBlock = styled.section`
-//   width: 80vw;
-//   margin: 1rem auto;
-// `;
 const MenuBlock = styled.div`
   position: relative;
-  left:1rem;
+  left: 1rem;
   z-index: 1;
-  cursor : pointer;
+  cursor: pointer;
 `;
 const ButtonBlock = styled.div`
-position: relative;
-right: 1rem;
-z-index: 1;
-cursor : pointer;
+  position: relative;
+  right: 1rem;
+  z-index: 1;
+  cursor: pointer;
 `;
 
 const Navi = () => {
@@ -48,7 +44,7 @@ const Navi = () => {
 
   const activeSideMenu = () => {
     isVisible ? setIsVisible(false) : setIsVisible(true);
-  }
+  };
   return (
     <HeaderBlock>
       <NavBlock>
@@ -58,7 +54,9 @@ const Navi = () => {
           <CategoryList></CategoryList>
         </MenuBlock>
         <ButtonBlock>
-          <Button> <FontAwesomeIcon icon={faBookmark} /></Button>
+          <Button>
+            <FontAwesomeIcon icon={faBookmark} />
+          </Button>
         </ButtonBlock>
       </NavBlock>
       {isVisible && <SideMenu />}
