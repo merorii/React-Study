@@ -1,17 +1,19 @@
+//base
 import React from 'react';
+
+//libs
 import Jump from 'react-reveal/Jump';
-import Fade from 'react-reveal/Fade'
 import styled from 'styled-components';
 
 const LoadingWrapper = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
-  left:0;
-  right:0;
-  background : #fff;
-  z-index:10; 
-`
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 10;
+`;
 
 const Wrapper = styled.ul`
   display: flex;
@@ -19,7 +21,7 @@ const Wrapper = styled.ul`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-`
+`;
 
 const Ball = styled.div`
   width: 13px;
@@ -27,8 +29,8 @@ const Ball = styled.div`
   border-radius: 50%;
   background-image: linear-gradient(to bottom right, #a8edea 0%, #fed6e3 100%);
   margin: 2px;
-`
-function Animation() {
+`;
+const Animation = () => {
   return (
     <LoadingWrapper>
       <Wrapper>
@@ -43,7 +45,7 @@ function Animation() {
         </Jump>
       </Wrapper>
     </LoadingWrapper>
-  )
-}
+  );
+};
 
-export default Animation
+export default Animation;

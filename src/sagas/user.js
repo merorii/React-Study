@@ -1,7 +1,11 @@
 import { all, delay, fork, put, takeLatest } from 'redux-saga/effects';
 import {
-  ADD_LIST_BOOKMARK,
-  DELETE_LIST_BOOKMARK,
+  ADD_CATEGORY_REQUEST,
+  ADD_CATEGORY_SUCCESS,
+  ADD_LIST_BOOKMARK_REQUEST,
+  ADD_LIST_BOOKMARK_SUCCESS,
+  DELETE_LIST_BOOKMARK_REQUEST,
+  DELETE_LIST_BOOKMARK_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -47,30 +51,42 @@ function* watchLogout() {
   yield takeLatest(LOGOUT_REQUEST, logout);
 }
 
+function* addListCategory(action) {
+  yield delay(500);
+  yield put({
+    type: ADD_CATEGORY_SUCCESS,
+    data: action.data,
+  });
+}
+
+function* watchAddCategory() {
+  yield takeLatest(ADD_CATEGORY_REQUEST, addListCategory);
+}
+
 function* addListBookmark(action) {
   yield delay(500);
   yield put({
-    type: ADD_LIST_BOOKMARK,
+    type: ADD_LIST_BOOKMARK_SUCCESS,
     data: action.data,
   });
 }
 
 function* watchAddBookmark() {
-  yield takeLatest(ADD_LIST_BOOKMARK, addListBookmark);
+  yield takeLatest(ADD_LIST_BOOKMARK_REQUEST, addListBookmark);
 }
 
 function* deleteListBookmark(action) {
   yield delay(500);
   yield put({
-    type: DELETE_LIST_BOOKMARK,
+    type: DELETE_LIST_BOOKMARK_SUCCESS,
     data: action.data,
   });
 }
 
 function* watchDeleteBookmark() {
-  yield takeLatest(ADD_LIST_BOOKMARK, deleteListBookmark);
+  yield takeLatest(DELETE_LIST_BOOKMARK_REQUEST, deleteListBookmark);
 }
 
 export default function* userSaga() {
-  yield all([fork(watchLogin), fork(watchLogout), fork(watchAddBookmark), fork(watchDeleteBookmark)]);
+  yield all([fork(watchLogin), fork(watchLogout), fork(watchAddCategory), fork(watchAddBookmark), fork(watchDeleteBookmark)]);
 }
