@@ -1,5 +1,5 @@
 //base
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 //hooks
 import { WindowSize } from '../hooks/useResponsive';
@@ -18,19 +18,19 @@ const CategoryListBlock = styled.div`
   flex-direction: ${(props) => (props.onlyIsTablet ? 'row' : 'column')};
   overflow-x: ${(props) => (props.onlyIsTablet ? 'scroll' : 'hidden')};
   overflow-y: ${(props) => (props.onlyIsTablet ? 'hidden' : 'scroll')};
-  ::-webkit-scrollbar {
-    display: none;
-  }
   ${(props) => props.onlyIsTablet && 'padding: 0 20px 0;'}
   margin-top: ${(props) => (props.onlyIsTablet ? '4vh' : '0')};
   max-height: 64vh;
   padding-left: ${(props) => (props.onlyIsTablet ? '' : '1rem')};
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const AddCategoryBlock = styled.div`
   background: rgba(255,255,255,0.3);
   box-shadow: 2px 2px 5px 0px rgb(0, 0, 0, .5);
-  margin: 9vh 1vw 0;
+  margin: ${(props) => props.onlyIsTablet ? '9vh 0 0 18%':'9vh 10px 0'};
   border-radius: 5px;
   padding: 3vh 0;
   position: fixed;
@@ -39,7 +39,6 @@ const AddCategoryBlock = styled.div`
   ${(props) => props.onlyIsTablet ? 'top: 0;':'bottom: 2vh;'}
   ${(props) => props.onlyIsTablet && `
     width: 50%;
-    margin: 9vh 25% 0;
     padding: 3vh;
   `}
 `;
@@ -56,16 +55,12 @@ const AddBtn = styled.div`
   width: fit-content;
   cursor: pointer;
   ${(props) => props.onlyIsTablet && `
-    left: calc(100% - 53px);
-    position: absolute;
-    bottom: 20px;
-    right: 0;
-    margin-top: 0;
-    border: 2px solid #222;
-    font-weight: bold;
+    display: inline-block;
+    border: 1px solid #222;
     width: 25px;
     height: 25px;
     line-height: 25px;
+    margin: 3vh 1vw 0;
     border-radius: 15px;
     padding: 0;
   `}
@@ -95,11 +90,21 @@ const CategoryList = ({ onClick }) => {
   const selectColor = (color) =>{
     setNewCategory({...newCategory, color: color});
   }
-  const onChange = (e) =>{
+  const onChange = (e) => {
     setNewCategory({...newCategory, text: e.target.value});
   }
+  const onKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      addCategoryEvent();
+    }
+  }
   const addCategoryEvent = ()=>{
+    if(!newCategory.text){
+      alert('키워드를 입력하세요');
+      return;
+    } 
     dispatch(addListCategorySuccess( newCategory ));
+    setNewCategory({ text: '', color: '#c86b85' });
   }
 
   return (
@@ -113,12 +118,13 @@ const CategoryList = ({ onClick }) => {
         {colors.map((color, idx)=>
           <Palette style={{background:color}} onClick={()=>{selectColor(color)}} key={idx}></Palette>
         )}
-        <input onChange={onChange} style={{
+        <input onChange={onChange} onKeyPress={onKeyPress} value={newCategory.text} style={{
           lineHeight: '1.5rem',
           background: 'none',
           border: 'none',
-          borderBottom: '1px solid #333',
-          marginTop: '2vh'
+          borderBottom: '1px solid #666',
+          marginTop: '2vh',
+          width: '80%'
         }}></input>
         <AddBtn 
           onlyIsTablet={onlyIsTablet}

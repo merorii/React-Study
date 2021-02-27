@@ -16,7 +16,6 @@ import VideoList from '../components/Video';
 
 const SideWrap = styled.div`
   display: flex;
-  /* height: 100vh; */
   margin-right: 0.5rem;
   text-align: center;
 `
@@ -70,11 +69,11 @@ const SideActiveStyle = styled.div`
 `;
 
 const SideActiveCloseStyle = styled.div`
-  position: absolute;
   left: calc(100% - 40px);
-  top: 10px;
   width: 40px;
   height: 40px;
+  ${(props) => props.onlyIsTablet ? 'position: fixed;' : 'position: absolute;'};
+  ${(props) => props.onlyIsTablet ? 'bottom: 22vh;' : 'top: 10px;'};
   &:after {
     content: '';
     position: absolute;
@@ -156,7 +155,7 @@ const SideMenu = () => {
           <FontAwesomeIcon
             icon={faStar}
             style={{
-              color: visibleBookmark.state ? 'gold' : 'white',
+              color: (visibleBookmark.keyword === 'ALL' && visibleBookmark.state) ? 'gold' : 'white',
             }}
           />
         </span>
@@ -165,7 +164,7 @@ const SideMenu = () => {
           className='keyword' 
           style={{
             background: item.color,
-            opacity: visibleBookmark.state ? '0.5' : '1'
+            opacity: (visibleBookmark.keyword === item.title && visibleBookmark.state) ? '0.3' : '1'
           }}
           onClick={()=>{visibleBookMarkList(item.title)}}
           key={idx}>
@@ -179,7 +178,7 @@ const SideMenu = () => {
           {visibleList && <CategoryList onClick={onClick}></CategoryList>}
           {visibleBookmark.state && 
           video.bookmark.map((video, idx) => {
-            if(visibleBookmark.keyword==='ALL') return <VideoList video={video} key={idx}></VideoList>
+            if(visibleBookmark.keyword === 'ALL') return <VideoList video={video} key={idx}></VideoList>
             else{
               if(video.keyword === visibleBookmark.keyword) return <VideoList video={video} key={idx}></VideoList>
               else return <></>;
