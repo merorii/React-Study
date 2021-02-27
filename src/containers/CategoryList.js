@@ -104,7 +104,7 @@ const CategoryList = ({ onClick }) => {
       return;
     } 
     dispatch(addListCategorySuccess( newCategory ));
-    setNewCategory({ text: '', color: '#c86b85' });
+    setNewCategory({ text: '', ...newCategory });
   }
 
   return (
