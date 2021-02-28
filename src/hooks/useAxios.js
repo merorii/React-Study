@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 axios.defaults.baseURL = 'https://www.googleapis.com/youtube/v3';
 axios.defaults.params = { key: process.env.REACT_APP_API_KEY };
 // axios.defaults.params = { key: 'AIzaSyAXb_LCENUcqkSlA7hC3Nwv2t87VDctpNw' };
+
 const useAxios = (keyword) => {
   const [state, setState] = useState({});
   const [error, setError] = useState('');
