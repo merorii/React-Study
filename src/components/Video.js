@@ -3,7 +3,7 @@ import React from 'react';
 
 //libs
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { playBookmarkPlaylist } from '../reducers/video';
 
 const VideoBlock = styled.section`
@@ -27,9 +27,6 @@ const VideoTitle = styled.p`
 `;
 
 const VideoList = ({ video }) => {
-  // const onClick = () => {
-  //   props.setVideoId(props.vid);
-  // };
   const dispatch = useDispatch();
 
   const onClick = () => {

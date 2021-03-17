@@ -1,5 +1,5 @@
 //base
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 
 //hooks
 import { WindowSize } from '../hooks/useResponsive';
