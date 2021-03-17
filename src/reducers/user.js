@@ -116,8 +116,6 @@ const getNewId = () => {
 
 const reducer = (state = initialState, action) =>
   produce(state, (draft) => {
-    // console.log(draft);
-    // console.log(state)
     switch (action.type) {
       case LOGIN_REQUEST:
         console.log('login request');
@@ -127,7 +125,6 @@ const reducer = (state = initialState, action) =>
         break;
       case LOGIN_SUCCESS:
         console.log('login request success');
-
         draft.user = { id: getNewId(), name: action.name, email: action.email };
         draft.loginLoading = false;
         draft.loginDone = true;
@@ -135,7 +132,6 @@ const reducer = (state = initialState, action) =>
         break;
       case LOGIN_FAILURE:
         console.log('login request failure');
-
         draft.loginLoading = false;
         draft.loginDone = false;
         draft.loginError = action.error;
@@ -162,7 +158,6 @@ const reducer = (state = initialState, action) =>
           title: action.data.text,
           color: action.data.color
         });
-        console.log(state.category)
         break;
       case ADD_CATEGORY_SUCCESS:
         draft.category.push({
@@ -170,7 +165,6 @@ const reducer = (state = initialState, action) =>
           title: action.data.text,
           color: action.data.color
         });
-        console.log(state.category)
         break;
       case ADD_LIST_BOOKMARK_REQUEST:
         draft.bookmark.push({
