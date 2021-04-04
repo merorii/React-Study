@@ -1,6 +1,9 @@
 # React-YoutubeProject
 
-💻 https://merorii.github.io/React-YoutubeProject/enjoy
+💻 https://merorii.github.io/React-YoutubeProject  
+
+*로그인 기능은 구현전입니다.  
+로그인페이지에서 아무 ID, PW를 입력 후 메인페이지로 이동해주세요! :)
 
 🎈 **YoutubeProject**  
 : 키워드별 노래모음 영상을 재생하는 유튜브 플레이리스트 & 재생 프로젝트
